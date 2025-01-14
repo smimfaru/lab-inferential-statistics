@@ -16,3 +16,34 @@
 
 
 
+import scipy.stats as stats
+
+# Given data
+population_mean = 120  # μ = 120 mm Hg
+sample_mean = 130.1    # Sample mean
+sample_std = 21.21     # Sample standard deviation
+sample_size = 100      # Sample size (n)
+
+# Step 1: State the Hypotheses
+# Null Hypothesis (H0): μ = 120 mm Hg (no difference)
+# Alternative Hypothesis (H1): μ ≠ 120 mm Hg (there is a difference)
+
+# Step 2: Calculate the Test Statistic (Z-score)
+z_score = (sample_mean - population_mean) / (sample_std / (sample_size ** 0.5))
+print(f"Calculated Z-score: {z_score:.5f}")
+
+# Step 3: Decision Rule
+# At a significance level of α = 0.05, the critical z-value for a two-tailed test is ±1.96
+alpha = 0.05
+critical_z = stats.norm.ppf(1 - alpha / 2)
+print(f"Critical Z-value: ±{critical_z:.2f}")
+
+# Step 4: Conclusion
+if abs(z_score) > critical_z:
+    print("Reject the null hypothesis: The group's systolic blood pressure is significantly different from the population mean.")
+else:
+    print("Fail to reject the null hypothesis: No significant difference in systolic blood pressure.")
+
+# By hand calculation:
+# Z = (130.1 - 120) / (21.21 / sqrt(100))
+# Z = 10.1 / 2.121 = 4.76190
